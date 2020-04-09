@@ -2,6 +2,7 @@
     <wb-module deploy-name="PETMILY_Insool">
         <wb-resource deploy-path="/" source-path="/web" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/web/css/admin"/>
         <property name="context-root" value="PETMILY_Insool"/>
         <property name="java-output-path" value="/PETMILY_Insool/web/WEB-INF/classes"/>
     </wb-module>

@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import com.petmily.user.model.vo.AdminUser;
 import com.petmily.user.model.vo.ApplyUser;
+import com.petmily.user.model.vo.ApplyUserData;
 import com.petmily.user.model.vo.User;
 
 public class AdminDao {
@@ -136,6 +137,40 @@ public class AdminDao {
 		
 		
 		return count;
+	}
+
+	public ApplyUserData applyUserData(Connection conn, String userId) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ApplyUserData aud = null;
+		String sql = prop.getProperty("applyData");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				aud = new ApplyUserData();
+				aud.setPET_SITTER_ID(rs.getString("PET_SITTER_ID"));
+				aud.setPET_CERTIFICATE_YN(rs.getString("PET_CERTIFICATE_YN"));
+				aud.setPET_SITTER_JOB(rs.getString("PET_SITTER_JOB"));
+				aud.setPET_SITTER_FAMILY(rs.getString("PET_SITTER_FAMILY"));
+				aud.setPET_SITTER_KEEP_PETS(rs.getString("PET_SITTER_KEEP_PETS"));
+				aud.setPET_SITTER_ACTIVITY(rs.getString("PET_SITTER_ACTIVITY"));
+				aud.setPET_SITTER_IMG(rs.getString("setPET_SITTER_IMG"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return aud;
+	}
+
+	public ApplyUserData applyUserResVal(Connection conn, ApplyUserData aud) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

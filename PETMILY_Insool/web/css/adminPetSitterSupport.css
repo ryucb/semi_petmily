@@ -56,16 +56,22 @@ div.adminUserInfo th:nth-of-type(1){
 	width:35px;
 }
 div.adminUserInfo th:nth-of-type(2){
-	width:35px;
+	width:45px;
+}
+div.adminUserInfo th:nth-of-type(3){
+	width:120px;
 }
 div.adminUserInfo th:nth-of-type(5){
-	width:160px;
+	width:170px;
 }
 div.adminUserInfo th:nth-of-type(6){
-	width:190px;
+	width:180px;
 }
 div.adminUserInfo th:nth-of-type(7){
-	width:240px;
+	width:220px;
+}
+div.adminUserInfo th:nth-of-type(7){
+	width:120px;
 }
 
 div.adminUserInfo tbody>tr{
@@ -74,7 +80,7 @@ div.adminUserInfo tbody>tr{
 }
 
 button.Abtns{
-	width:150px;
+	width:130px;
 	height:30px;
 	background-color:white;
 	border:1px solid black;
@@ -94,4 +100,19 @@ button.Abtns{
 div#pageBar{
 	font-size:20px;
 	text-decoration:none;
+}
+
+form{
+	display:flex;
+	flex-direction:row;
+}
+
+table{
+	margin:0px;
+	width:100%;
+}
+
+input[type=checkbox]{
+	width:20px;
+	height:20px;
 }
