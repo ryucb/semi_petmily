@@ -94,10 +94,8 @@
 	})
 	
 	function applyUserData(){
-			console.log(event.target);
-			console.log($(event.target).parent().parent());
 			let userId = $(event.target).parent().parent().find("td:nth-of-type(3)").text();
-			window.open("<%=request.getContextPath()%>/admin/applyUserData?userId="+userId,"_blank","width=400px; height=500px");
+			window.open("<%=request.getContextPath()%>/admin/applyUserData?userId="+userId,"_blank","width=725px; height=500px");
 		}
 	
 </script>

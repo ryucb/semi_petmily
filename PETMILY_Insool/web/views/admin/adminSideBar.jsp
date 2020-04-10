@@ -1,15 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <aside id="sideBar">
 		<div id="sideBar1" class="side">
 			<h2>일반 회원</h2>
 			<hr/>
-			<a href="<%=request.getContextPath()%>/admin/user_list">- 일반 회원 목록</a>
+			<% if(request.getAttribute("pageType").equals("1")){ %>
+				<a href="<%=request.getContextPath()%>/admin/user_list">▷  일반 회원 목록</a>
+			<% } else { %>
+				<a href="<%=request.getContextPath()%>/admin/user_list">-  일반 회원 목록</a>
+			<% } %>
 		</div>
 		<div id="sideBar2" class="side">
 			<h2>펫 시터</h2>
 			<hr/>
-			<a href="<%=request.getContextPath()%>/admin/apply">- 펫 시터 지원 목록</a>
+			<% if(request.getAttribute("pageType").equals("2")){ %>
+				<a href="<%=request.getContextPath()%>/admin/apply">▷  펫 시터 지원 목록</a>
+			<% } else { %>
+				<a href="<%=request.getContextPath()%>/admin/apply">- 펫 시터 지원 목록</a>
+			<% } %>
 			<a href="#">- 이전 펫 시터 지원 목록</a>
 			<a href="#">- 펫 시터 목록</a>
 		</div>

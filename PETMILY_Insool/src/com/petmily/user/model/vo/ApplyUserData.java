@@ -1,5 +1,6 @@
 package com.petmily.user.model.vo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ApplyUserData {
@@ -13,7 +14,7 @@ public class ApplyUserData {
 	private String PET_SITTER_ACTIVITY;
 	private String PET_SITTER_IMG;
 	// 펫시터 거주지유형
-	private String[] RESIDENCE_VALUE;
+	private ArrayList<String> RESIDENCE_VALUE;
 	// 펫시터자격증테이블
 	private String CERTIFICATE_NAME;
 	private String CERTIFICATION_NAME;
@@ -73,11 +74,11 @@ public class ApplyUserData {
 		PET_SITTER_IMG = pET_SITTER_IMG;
 	}
 
-	public String[] getRESIDENCE_VALUE() {
+	public ArrayList<String> getRESIDENCE_VALUE() {
 		return RESIDENCE_VALUE;
 	}
 
-	public void setRESIDENCE_VALUE(String[] rESIDENCE_VALUE) {
+	public void setRESIDENCE_VALUE(ArrayList<String> rESIDENCE_VALUE) {
 		RESIDENCE_VALUE = rESIDENCE_VALUE;
 	}
 
@@ -134,7 +135,7 @@ public class ApplyUserData {
 		return "ApplyUserData [PET_SITTER_ID=" + PET_SITTER_ID + ", PET_CERTIFICATE_YN=" + PET_CERTIFICATE_YN
 				+ ", PET_SITTER_JOB=" + PET_SITTER_JOB + ", PET_SITTER_FAMILY=" + PET_SITTER_FAMILY
 				+ ", PET_SITTER_KEEP_PETS=" + PET_SITTER_KEEP_PETS + ", PET_SITTER_ACTIVITY=" + PET_SITTER_ACTIVITY
-				+ ", PET_SITTER_IMG=" + PET_SITTER_IMG + ", RESIDENCE_VALUE=" + Arrays.toString(RESIDENCE_VALUE)
+				+ ", PET_SITTER_IMG=" + PET_SITTER_IMG + ", RESIDENCE_VALUE=" + RESIDENCE_VALUE
 				+ ", CERTIFICATE_NAME=" + CERTIFICATE_NAME + ", CERTIFICATION_NAME=" + CERTIFICATION_NAME
 				+ ", DATE_OF_ACQUISITION=" + DATE_OF_ACQUISITION + ", EXPIRATION_DATE=" + EXPIRATION_DATE
 				+ ", CERTIFICATE_FILENAME=" + CERTIFICATE_FILENAME + "]";

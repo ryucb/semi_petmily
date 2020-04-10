@@ -3,7 +3,7 @@
 <%@ page import="java.util.ArrayList, com.petmily.user.model.vo.AdminUser" %>
 <%@ include file="/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminSideBar.css" type = "text/css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminPetSitterSupport.css" type = "text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminUserList.css" type = "text/css">
 <% 
 	ArrayList<AdminUser> list = new ArrayList();
 	if(request.getAttribute("userList")!=null){
@@ -68,7 +68,7 @@
 						<td><%=u.getUserBirth().substring(0,11) %></td>
 						<td><%=u.getStarCount() %></td>
 						<td><%=u.getBlindCount() %></td>
-						<td><button onclick="location.replace('#')">보기</button></td>
+						<td><button class="userInfo" onclick="showUserData()">보기</button></td>
 					</tr>
 					<% } %>
 				</tbody>
@@ -95,5 +95,10 @@
 		})
 		
 	})
+	
+	function showUserData(){
+		let userId = $(event.target).parent().parent().find("td:nth-of-type(2)").text();
+		window.open("<%=request.getContextPath()%>/admin/normalUserData?userId="+userId,"_blank","width=725px; height=500px");
+	}
 </script>
 <%@ include file="/views/common/footer.jsp" %>

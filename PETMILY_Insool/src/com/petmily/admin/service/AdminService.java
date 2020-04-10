@@ -10,6 +10,7 @@ import com.petmily.admin.model.dao.AdminDao;
 import com.petmily.user.model.vo.AdminUser;
 import com.petmily.user.model.vo.ApplyUser;
 import com.petmily.user.model.vo.ApplyUserData;
+import com.petmily.user.model.vo.User;
 
 public class AdminService {
 	
@@ -50,7 +51,17 @@ public class AdminService {
 		Connection conn = getConnection();
 		ApplyUserData aud = dao.applyUserData(conn,userId);
 		aud = dao.applyUserResVal(conn,aud);
+		aud = dao.applyUserCerVal(conn,aud);
+		System.out.println("aud : " + aud);
+		close(conn);
 		return aud;
+	}
+
+	public User userData(String userId) {
+		Connection conn = getConnection();
+		User u = dao.userData(conn, userId);
+		close(conn);
+		return u;
 	}
 
 }

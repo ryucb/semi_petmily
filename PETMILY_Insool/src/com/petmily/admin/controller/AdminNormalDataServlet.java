@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.petmily.admin.service.AdminService;
-import com.petmily.user.model.vo.ApplyUserData;
+import com.petmily.user.model.vo.User;
 
 /**
- * Servlet implementation class AdminApplyDataServlet
+ * Servlet implementation class AdminNormalDataServlet
  */
-@WebServlet("/admin/applyUserData")
-public class AdminApplyDataServlet extends HttpServlet {
+@WebServlet("/admin/normalUserData")
+public class AdminNormalDataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminApplyDataServlet() {
+    public AdminNormalDataServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +33,16 @@ public class AdminApplyDataServlet extends HttpServlet {
 		
 		String userId = null;
 		if(request.getParameter("userId")!=null) {
-			userId = (String)request.getParameter("userId");
+			userId = request.getParameter("userId");
 		}
 		
-		ApplyUserData aud = new AdminService().applyUser(userId);
+		User u = new AdminService().userData(userId);
+		System.out.println(u);
 		
-		
-		request.setAttribute("showType", "apply");
-		request.setAttribute("userData", aud);
+		request.setAttribute("showType", "user");
+		request.setAttribute("userData", u);
 		request.getRequestDispatcher("/views/admin/InfoPage.jsp").forward(request, response);
+		
 	}
 
 	/**

@@ -9,27 +9,16 @@ public class User {
 	private String phone;
 	private String zipCode;
 	private String address;
+	private String detAddress;
 	private String email;
 	private String gender;
 	private String status;
 	private String userType;
+	private String bellRes;
+	private String bellChatt;
+	private String enrollDate;
 	public User() {
 		// TODO Auto-generated constructor stub
-	}
-	public User(String userId, String password, String userName, String userBirth, String phone, String zipCode,
-			String address, String email, String gender, String status, String userType) {
-		super();
-		this.userId = userId;
-		this.password = password;
-		this.userName = userName;
-		this.userBirth = userBirth;
-		this.phone = phone;
-		this.zipCode = zipCode;
-		this.address = address;
-		this.email = email;
-		this.gender = gender;
-		this.status = status;
-		this.userType = userType;
 	}
 	public String getUserId() {
 		return userId;
@@ -73,6 +62,12 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getDetAddress() {
+		return detAddress;
+	}
+	public void setDetAddress(String detAddress) {
+		this.detAddress = detAddress;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -97,11 +92,32 @@ public class User {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+	public String getBellRes() {
+		return bellRes;
+	}
+	public void setBellRes(String bellRes) {
+		this.bellRes = bellRes;
+	}
+	public String getBellChatt() {
+		return bellChatt;
+	}
+	public void setBellChatt(String bellChatt) {
+		this.bellChatt = bellChatt;
+	}
+	public String getEnrollDate() {
+		return enrollDate;
+	}
+	public void setEnrollDate(String enrollDate) {
+		this.enrollDate = enrollDate;
+	}
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", password=" + password + ", userName=" + userName + ", userBirth="
-				+ userBirth + ", phone=" + phone + ", zipCode=" + zipCode + ", address=" + address + ", email=" + email
-				+ ", gender=" + gender + ", status=" + status + ", userType=" + userType + "]";
+				+ userBirth + ", phone=" + phone + ", zipCode=" + zipCode + ", address=" + address + ", detAddress="
+				+ detAddress + ", email=" + email + ", gender=" + gender + ", status=" + status + ", userType="
+				+ userType + ", bellRes=" + bellRes + ", bellChatt=" + bellChatt + ", enrollDate=" + enrollDate + "]";
 	}
 	
+	
+
 }
