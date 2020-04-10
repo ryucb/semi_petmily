@@ -34,7 +34,7 @@
 	        </ul>
 	        <% } else { %>
 	        <ul id="headerlogin">
-	        	<li><a href="<%=request.getContextPath()%>/admin/"><img alt="유저" src="<%=request.getContextPath()%>/img/common/Profile.png"
+	        	<li><a href="#"><img alt="유저" src="<%=request.getContextPath()%>/img/common/Profile.png"
 	        						width="30px" height="30px"></a></li>
 	            <li><p>OOO님</p></li>
 	            <li><a href="#">로그아웃</a></li>
