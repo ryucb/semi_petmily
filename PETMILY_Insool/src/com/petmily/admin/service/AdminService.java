@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.petmily.admin.model.dao.AdminDao;
 import com.petmily.user.model.vo.AdminUser;
 import com.petmily.user.model.vo.ApplyUser;
+import com.petmily.user.model.vo.ApplyUserData;
 
 public class AdminService {
 	
@@ -43,6 +44,13 @@ public class AdminService {
 		int count = dao.applyCount(conn);
 		close(conn);
 		return count;
+	}
+
+	public ApplyUserData applyUser(String userId) {
+		Connection conn = getConnection();
+		ApplyUserData aud = dao.applyUserData(conn,userId);
+		aud = dao.applyUserResVal(conn,aud);
+		return aud;
 	}
 
 }
