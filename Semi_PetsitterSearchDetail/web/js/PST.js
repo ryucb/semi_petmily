@@ -53,6 +53,11 @@ reservation_end.onclick = function() {
     $('body').css("overflow", "hidden");
 }
 
+bline_process.onclick = function() {
+    bline_process_modal.style.display = "block";
+    $('body').css("overflow", "hidden");
+}
+
 // When the user clicks on <span> (x), close the modal
 reservation_close.onclick = function() {
     reservation_modal.style.display = "none";

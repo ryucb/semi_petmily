@@ -12,14 +12,22 @@ public class ReviewPetSitter {
 	private String reviewDate;
 	private String reviewType;
 	private String reviewBilnd;
+	private String reviewSend;
 	public ReviewPetSitter() {
 		// TODO Auto-generated constructor stub
 	}
 
 	
 	
+
+	
+	
+
+
+
 	public ReviewPetSitter(String userName, int userReviewNo, String userId, int reservationCode, String petSitterId,
-			String reviewText, int reviewStar, String reviewDate, String reviewType, String reviewBilnd) {
+			String reviewText, int reviewStar, String reviewDate, String reviewType, String reviewBilnd,
+			String reviewSend) {
 		super();
 		this.userName = userName;
 		this.userReviewNo = userReviewNo;
@@ -31,9 +39,38 @@ public class ReviewPetSitter {
 		this.reviewDate = reviewDate;
 		this.reviewType = reviewType;
 		this.reviewBilnd = reviewBilnd;
+		this.reviewSend = reviewSend;
 	}
-	
-	
+
+
+
+
+
+
+
+
+
+	public String getReviewSend() {
+		return reviewSend;
+	}
+
+
+
+
+
+
+
+
+
+	public void setReviewSend(String reviewSend) {
+		this.reviewSend = reviewSend;
+	}
+
+
+
+
+
+
 
 
 

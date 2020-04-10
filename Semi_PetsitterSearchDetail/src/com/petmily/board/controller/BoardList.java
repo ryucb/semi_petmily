@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.petmily.board.model.vo.PetSitterBoard;
 import com.petmily.board.model.vo.PlusOptionService;
 import com.petmily.board.service.BoardService;
+import com.petmily.pet.model.vo.PetInfo;
 import com.petmily.petsitter.model.vo.PetSitter;
 import com.petmily.petsitter.model.vo.PetSitterCertificate;
 import com.petmily.review.model.vo.ReviewPetSitter;
@@ -73,6 +74,9 @@ public class BoardList extends HttpServlet {
 		// 게시글 이미지
 		List<String> boardImgs = new BoardService().getBoardImg(boardCode);
 		
+		// 사용자의 pet 정보
+		List<PetInfo> petsST = new BoardService().getPetInfoT(userId);
+		
 		
 		request.setAttribute("bookmark", bookmark);
 		request.setAttribute("boardT", sitterBoardT);
@@ -87,6 +91,8 @@ public class BoardList extends HttpServlet {
 		request.setAttribute("userId", userId);
 		request.setAttribute("boardImgs", boardImgs);
 		request.setAttribute("reviews", reviews);
+		
+		request.setAttribute("petsInfo", petsST);
 		
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 		

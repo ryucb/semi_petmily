@@ -1,3 +1,5 @@
+<%@page import="javafx.geometry.Pos"%>
+<%@page import="com.petmily.pet.model.vo.PetInfo"%>
 <%@page import="com.petmily.review.model.vo.ReviewPetSitter"%>
 <%@page import="com.petmily.board.model.vo.boardImg"%>
 <%@page import="com.petmily.petsitter.model.vo.PetSitterCertificate"%>
@@ -26,6 +28,7 @@
 	List<String> BoardImgs = (List)request.getAttribute("boardImgs");
 	boolean bookmarkFlag = (boolean)request.getAttribute("bookmark");
 	List<ReviewPetSitter> reviews = (List)request.getAttribute("reviews");
+	List<PetInfo> petsInfos = (List)request.getAttribute("petsInfo");
 
 
 %>
@@ -303,17 +306,14 @@
 	                    <table>
 	
 	                        <tr>
-	                            <td rowspan="2">
+	                            <td>
 	    
 	                                <img src="https://cdns.iconmonstr.com/wp-content/assets/preview/2017/240/iconmonstr-medical-11.png" width="40px" height="30px">
 	    
 	                            </td>
 	                            <td style="text-align: right;"><%=s %></td>
 	                        </tr>
-	    
-	                        <tr>
-	                            <td style="text-align: right;">터그놀이, 노즈워크 등</td>
-	                        </tr>
+	  
 	    
 	                    </table>
 	                </div>
@@ -334,18 +334,13 @@
 	                    <table>
 	
 	                        <tr>
-	                            <td rowspan="2">
+	                            <td>
 	    
 	                                <img src="https://cdns.iconmonstr.com/wp-content/assets/preview/2017/240/iconmonstr-medical-11.png" width="40px" height="30px">
 	    
 	                            </td>
 	                            <td style="text-align: right;"><%=pos.getPlusOptionType() %></td>
 	                        </tr>
-	    
-	                        <tr>
-	                            <td style="text-align: right;">터그놀이, 노즈워크 등</td>
-	                        </tr>
-	    
 	                    </table>
 	                </div>  
                 <%} %>
@@ -388,27 +383,29 @@
 	                            
 	                        </tr>
 	                        <tr>
-	                            <td colspan="2">testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</td>
+	                            <td colspan="2"><%=review.getReviewText() %></td>
 	                        </tr>
 	                    </table>
 	
 	                </div>
 	
-	                <div class="col-lg-2" style="height: 200px;">
-	
-	                    <div class="review_profile">
-	                        <img src="<%=request.getContextPath() %>/img/profile/<%=sitterT.getPetSitterImg() %>" alt=""
-	                        width="100%" height="100%">
-	                    </div>
-	
-	                </div>
-	    
-	                    
-	                <div class="col-lg-10">
-	
-	                    <div style="border:1px solid gray; width:100%; height: 100px; margin-top: 50px;"></div>
-	
-	                </div>
+					<%if(review.getReviewSend()!=null) {%>
+		                <div class="col-lg-2" style="height: 200px;">
+		
+		                    <div class="review_profile">
+		                        <img src="<%=request.getContextPath() %>/img/profile/<%=sitterT.getPetSitterImg() %>" alt=""
+		                        width="100%" height="100%">
+		                    </div>
+		
+		                </div>
+		    
+		                    
+		                <div class="col-lg-10">
+		
+		                    <div style="border:1px solid gray; width:100%; height: 100px; margin-top: 50px;"></div>
+		
+		                </div>
+		       		<%} %>
 	                
 	                
 	            </div>
@@ -452,7 +449,7 @@
     <div id="reservation_modal" class="modal">
  
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content" style="width:30%">
 
             <table>
                 <tr>
@@ -463,67 +460,103 @@
             </table>
 
             <hr>
-            <div>케어 유형</div>
-            <hr>
-
-            <table>
-                <tr>
-                    <td>1박 케어</td>   
-                    <td style="text-align: right; margin-right: 30px;">1박 / 40,000원&nbsp&nbsp;&nbsp;<input type="checkbox"> </td>
-                </tr>
-            </table>
 
             <br>
 
             <div>체크 인 - 체크 아웃</div>
             <hr>
+            <!-- 달력 api 완성 이후 작업 -->
             <div>xxxx년 x월 xx일 ~ xxxx년 x월 xx일</div>
-
+            
             <br>
             
             <table>
                 <tr>
                     <td>반려견 선택</td>
-                    <td style="text-align: right;">1마리 / 40,000원</td>
+                   	<%for(PlusOptionService pos: pOServiceList) {%>
+	                    <%if(pos.getPlusOptionType().equals("노견케어")) {%>
+	                    <td style="text-align: right;">노견케어는 지원하지 않습니다.</td>
+	                    
+	                    <%break;} %>
+                    <%} %>
                 </tr>
             </table>
-            <hr>
+            <hr style="margin-top: 1px;">
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-4"><button style="width: 100%">푸푸</button></div>
-                <div class="col-md-4"><button style="width: 100%">포포</button></div>
-                <div class="col-md-2"></div>
+            	<%for(PetInfo petInfo : petsInfos) {%>
+                	<div class="col-md-6"><button onclick="petDisplayCh('<%=petInfo.getPetCode() %>');"; style="width: 80%;margin-left: 50%;transform: translateX(-50%);"><%=petInfo.getPetName() %></button></div>
+                <%} %>
             </div>
+            
+            <br>
 
-            <div>추가 옵션 선택</div>
-            <hr>
-            <table>
-                <tr>
-                    <td>목욕</td>
-                    <td style="text-align: right; margin-right: 30px; ">12,000원&nbsp;&nbsp;&nbsp;<input type="checkbox"></td>
-                </tr>
-                <tr>
-                    <td>포포<br><input type="text" placeholder="ex)입력해!!"></td>
-                    <td>목욕 횟수<br><input type="number"></td>
-                </tr>
-
-                <tr>
-                    <td>약물 복용</td>
-                    <td style="text-align: right; margin-right: 30px;"><input type="checkbox"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input style="width: 100%;" type="text" placeholder="입력!"></td>
-                </tr>
-
-                <tr>
-                    <td>집 앞 픽업</td>
-                    <td style="text-align: right; margin-right: 30px;">편도 xx원 왕복 xx원&nbsp;&nbsp;&nbsp;<input type="checkbox"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">펫 시터에게 갈 때 <input type="radio" name="move"> 집으로 돌아 갈 때 <input type="radio" name="move"> 왕복 <input type="radio" name="move"></td>
-                </tr>
-
-            </table>
+			<%for(PetInfo petInfo : petsInfos) {%>
+				<div id="<%=petInfo.getPetCode()%>" style="display :none;">
+		            <div>추가 옵션 선택</div>
+		            <hr>
+		            <table>
+		            	<%for(PlusOptionService pos : pOServiceList) {%>
+		            		<%if(pos.getPlusOptionType().equals("목욕가능")){ %>
+		            			<%if(petInfo.getPetWeight().equals("소형")) {%>
+				            		<tr>
+					                    <td>목욕</td>
+					                    <td style="text-align: right; margin-right: 30px; "><%=pos.getSmallPrice() %>원&nbsp;&nbsp;&nbsp;<input onclick="bath_con('<%=petInfo.getPetName() %>');" id="bath" type="checkbox"></td>
+					                </tr>
+					         	<%}else if(petInfo.getPetWeight().equals("중형")) {%>
+					         		<tr>
+					                    <td>목욕</td>
+					                    <td style="text-align: right; margin-right: 30px; "><%=pos.getMiddlePrice() %>원&nbsp;&nbsp;&nbsp;<input onclick="bath_con('<%=petInfo.getPetName() %>');" id="bath" type="checkbox"></td>
+					                </tr>
+					         	<%} else{ %>
+					         		<tr>
+					                    <td>목욕</td>
+					                    <td style="text-align: right; margin-right: 30px; "><%=pos.getBigPrice() %>원&nbsp;&nbsp;&nbsp;<input onclick="bath_con('<%=petInfo.getPetName() %>');" id="bath" type="checkbox"></td>
+					                </tr>
+					         	<%} %>
+			                <%break;} %>
+		            	<%} %>
+		            	
+		            	<%-- <tr>
+		                    <td>목욕</td>
+		                    <td style="text-align: right; margin-right: 30px; ">??원&nbsp;&nbsp;&nbsp;<input onclick="bath_con('<%=petInfo.getPetName() %>');" id="bath" type="checkbox"></td>
+		                </tr> --%>
+		
+		            	<%for(PlusOptionService pos : pOServiceList) {%>
+		            		<%if(pos.getPlusOptionType().equals("약물복용")){ %>
+		            			<%if(petInfo.getPetWeight().equals("소형")) {%>
+				            		<tr>
+					                    <td>약물 복용</td>
+					                    <td style="text-align: right; margin-right: 30px;"><input onclick="medication_con('<%=petInfo.getPetName() %>');" id="Medication" type="checkbox"></td>
+					                </tr>
+					         	<%}else if(petInfo.getPetWeight().equals("중형")) {%>
+				            		<tr>
+					                    <td>약물 복용</td>
+					                    <td style="text-align: right; margin-right: 30px;"><input onclick="medication_con('<%=petInfo.getPetName() %>');" id="Medication" type="checkbox"></td>
+					                </tr>
+					         	<%} else{ %>
+				            		<tr>
+					                    <td>약물 복용</td>
+					                    <td style="text-align: right; margin-right: 30px;"><input onclick="medication_con('<%=petInfo.getPetName() %>');" id="Medication" type="checkbox"></td>
+					                </tr>
+					         	<%} %>
+			                <%break;} %>
+		            	<%} %>		                
+		
+						<%for(PlusOptionService pos : pOServiceList) {%>
+							<%if(pos.getPlusOptionType().equals("집앞픽업")){ %>
+				                <tr>
+				                    <td>집 앞 픽업</td>
+				                    <td style="text-align: right; margin-right: 30px;">편도 <%=pos.getOneWayPrice() %>원 왕복 <%=pos.getAllWayPrice() %>원&nbsp;&nbsp;&nbsp;<input type="checkbox"></td>
+				                </tr>
+				                <tr>
+				                    <td colspan="2">펫 시터에게 갈 때 <input type="radio" name="move"> &nbsp;&nbsp;집으로 돌아 갈 때 <input type="radio" name="move">&nbsp;&nbsp; 왕복 <input type="radio" name="move"></td>
+				                </tr>
+			                <%} %>
+		                <%} %>
+		
+		            </table>
+	            </div>
+            <%} %>
 
             <div>추가 요청 및 문의 사항</div>
             <input type="text" placeholder="300자 이내" style="width: 100%; line-height: 100px;">
@@ -654,7 +687,7 @@
     <div id="reservation_end_modal" class="modal">
 
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content" style="width: 30%;">
             <table>
                 <tr>
                     <td style="width: 70px"></td>
@@ -685,7 +718,7 @@
     </div>
 
         <!-- The Modal -->
-        <div id="img_modal" class="modal">
+        <div id="img_modal" class="modal" >
 
             <!-- Modal content -->
             <div class="modal-content" style="width: 100%; height: 100%; margin: 0 0;">
@@ -775,13 +808,48 @@ function bookmark(){
 			event.target.src = "<%=request.getContextPath()%>/img/bookmark/bookmarkRed.png";
 		
 }
-<%if(userId.equals(sitterT.getPetSitterId())){%>
+
 bline_process.onclick = function() {
     bline_process_modal.style.display = "block";
     $('body').css("overflow", "hidden");
 }
-<%}%>
 
+function petDisplayCh(data){
+	
+	<%for(PetInfo petInfo : petsInfos){%>
+	
+		$("#" + <%=petInfo.getPetCode()%>).attr("style", "display : none;");
+	
+	<%}%>
+	
+	
+	
+	
+	$("#" + data).attr("style", "display :block; width:100%; height:100%;");
+	
+}
+
+function bath_con(data){
+	var code = "<tr id='bath_content'><td>" + data +  "<br><input type='text' placeholder='ex)입력해!!'></td><td style='text-align:right;'>목욕 횟수<br><input type='number'></td></tr>";
+	
+	$("#bath").parent().parent().after(code);
+	
+	if(document.getElementById("bath").checked==false)
+		$("tr").remove("#bath_content");
+	
+}
+
+function medication_con(data){
+	var code = "<tr id='medication_content'><td colspan='2'>" + data +  "<br><input style='width: 100%;' type='text' placeholder='입력!'></td></td></tr>";
+
+	$("#Medication").parent().parent().after(code);
+	
+	if(document.getElementById("Medication").checked==false)
+		$("tr").remove("#medication_content");
+	
+}
+
+	
 </script>
 
 

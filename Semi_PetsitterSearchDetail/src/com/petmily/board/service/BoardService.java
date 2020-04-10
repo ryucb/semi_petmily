@@ -11,6 +11,7 @@ import java.util.List;
 import com.petmily.board.model.dao.BoardDao;
 import com.petmily.board.model.vo.PetSitterBoard;
 import com.petmily.board.model.vo.PlusOptionService;
+import com.petmily.pet.model.vo.PetInfo;
 import com.petmily.petsitter.model.vo.PetSitter;
 import com.petmily.petsitter.model.vo.PetSitterCertificate;
 import com.petmily.review.model.vo.ReviewPetSitter;
@@ -131,6 +132,13 @@ public class BoardService {
 		List<String> boardImgs = dao.getBoardImg(conn, boardCode);
 		close(conn);
 		return boardImgs;
+	}
+	
+	public List<PetInfo> getPetInfoT(String userId){
+		Connection conn = getConnection();
+		List<PetInfo> petsT = dao.getPetInfoT(conn, userId);
+		close(conn);
+		return petsT;
 	}
 	
 

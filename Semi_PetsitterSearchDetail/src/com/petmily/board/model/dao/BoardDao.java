@@ -14,11 +14,14 @@ import java.util.Properties;
 
 import com.petmily.board.model.vo.PetSitterBoard;
 import com.petmily.board.model.vo.PlusOptionService;
+import com.petmily.pet.model.vo.PetInfo;
 import com.petmily.petsitter.model.vo.PetSitter;
 import com.petmily.petsitter.model.vo.PetSitterCertificate;
 import com.petmily.review.model.vo.ReviewPetSitter;
 import com.petmily.user.model.vo.User;
 import com.sun.prism.Presentable;
+
+import oracle.jdbc.proxy.annotation.Pre;
 
 public class BoardDao {
 	
@@ -492,6 +495,44 @@ public class BoardDao {
 		}
 		
 		return boardImgs;
+		
+	}
+	
+	public List<PetInfo> getPetInfoT(Connection conn, String userId){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = prop.getProperty("getPetInfoT");
+		
+		List<PetInfo> petsT = new ArrayList<PetInfo>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				PetInfo pet = new PetInfo();
+				pet.setPetCode(rs.getInt("PET_CODE"));
+				pet.setUserId(userId);
+				pet.setPetName(rs.getString("PET_NAME"));
+				pet.setPetWeight(rs.getString("PET_WEIGHT"));
+				pet.setPetImgFilename(rs.getString("PET_IMG_FILENAME"));
+				petsT.add(pet);
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return petsT;
+		
+		
 		
 	}
 
